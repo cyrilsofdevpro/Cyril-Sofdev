@@ -12,6 +12,8 @@ export const metadata: Metadata = constructMetadata({
 });
 
 export default function ContactPage() {
+  const UserIcon = iconMap.user!;
+
   return (
     <div className="pb-32 pt-32">
       <div className="container">
@@ -30,7 +32,7 @@ export default function ContactPage() {
         <div className="mt-14 grid gap-10 lg:grid-cols-2">
           <Reveal delay={0.05} className="space-y-3">
             {socials.map((s) => {
-              const Icon = iconMap[s.icon] ?? iconMap.mail;
+              const Icon = iconMap[s.icon] ?? iconMap.mail!;
               return (
                 <a
                   key={s.label}
@@ -51,7 +53,7 @@ export default function ContactPage() {
             })}
             <div className="glass flex items-center gap-4 rounded-xl px-4 py-3.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-surface-2 text-brand-cyan">
-                <iconMap.user className="h-4 w-4" />
+                <UserIcon className="h-4 w-4" />
               </span>
               <div>
                 <p className="text-sm font-medium">Location</p>

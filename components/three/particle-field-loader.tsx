@@ -10,7 +10,7 @@ export default function ParticleFieldLoader() {
     let mounted = true;
     import("@/components/three/particle-field").then((m) => {
       if (!mounted) return;
-      const C = (m && (m.ParticleField || m.default)) as ComponentType | undefined;
+      const C = m.ParticleField as ComponentType | undefined;
       if (C) setComp(() => C);
     });
     return () => {

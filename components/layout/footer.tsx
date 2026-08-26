@@ -8,7 +8,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-6">
         <div className="flex items-center gap-3">
           {socials.map((s) => {
-            const Icon = iconMap[s.icon] ?? iconMap.mail;
+            const Icon = iconMap[s.icon] ?? iconMap.mail!;
             return (
               <Link
                 key={s.label}

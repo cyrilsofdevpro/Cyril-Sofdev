@@ -40,6 +40,7 @@ export function TerminalCard() {
     function typeNext() {
       if (lineIdx >= lines.length) return;
       const line = lines[lineIdx];
+      if (!line) return;
       charIdx++;
       setRendered((prev) => {
         const next = [...prev];

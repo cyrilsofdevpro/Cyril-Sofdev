@@ -16,7 +16,7 @@ export function DockNav() {
       className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 flex items-center gap-1 rounded-full glass p-2 shadow-2xl shadow-black/40"
     >
       {dockNav.map((item) => {
-        const Icon = iconMap[item.icon];
+        const Icon = iconMap[item.icon]!;
         const isActive =
           item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
