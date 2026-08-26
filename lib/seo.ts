@@ -1,11 +1,26 @@
 import type { Metadata } from "next";
 
+const DEFAULT_SITE_URL = "https://cyrilsofdev.dev";
+
+function getSiteUrl(value: string | undefined): string {
+  const candidate = value?.trim();
+  if (!candidate) return DEFAULT_SITE_URL;
+
+  try {
+    const url = new URL(candidate);
+    if (url.protocol !== "http:" && url.protocol !== "https:") return DEFAULT_SITE_URL;
+    return url.origin;
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+}
+
 export const siteConfig = {
   name: "Cyril Sofdev",
   title: "Cyril Sofdev — AI Software Engineer",
   description:
     "Cyril Sofdev — AI Software Engineer, Full Stack Developer & Trading Systems Developer. Building intelligent products, automation systems and trading technology.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://cyrilsofdev.dev",
+  url: getSiteUrl(process.env.NEXT_PUBLIC_SITE_URL),
   ogImage: "/og.png",
   links: {
     github: "https://github.com/cyrilsofdevpro",
