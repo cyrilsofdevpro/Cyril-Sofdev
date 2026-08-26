@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// A message submitted through the /contact form
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  body      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+/// Editable project entries (backs the /projects pages via the CMS)
+model Project {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  name          String
+  tagline       String
+  description   String
+  category      String
+  coverImage    String?
+  gallery       String[]  @default([])
+  techStack     String[]  @default([])
+  problem       String?
+  solution      String?
+  architecture  String?
+  challenges    String?
+  results       String?
+  githubUrl     String?
+  liveUrl       String?
+  featured      Boolean   @default(false)
+  published     Boolean   @default(true)
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+/// Editable blog posts (MDX body stored as text, front-matter as columns)
+model Post {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  title         String
+  excerpt       String
+  content       String
+  category      String
+  tags          String[]  @default([])
+  coverImage    String?
+  published     Boolean   @default(false)
+  publishedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+/// Editable testimonials shown on the site
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  quote     String
+  avatarUrl String?
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+/// Editable timeline / experience entries
+model TimelineEntry {
+  id          String   @id @default(cuid())
+  title       String
+  organization String?
+  description String
+  startDate   DateTime
+  endDate     DateTime?
+  current     Boolean  @default(false)
+  type        String   // "education" | "experience" | "milestone"
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
