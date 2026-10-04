@@ -6,7 +6,7 @@ import { ProjectGrid } from "@/components/projects/project-grid";
 export const metadata: Metadata = constructMetadata({
   title: "Projects — Cyril Sofdev",
   description:
-    "AI platforms, a from-scratch LLM, trading systems, automation and client web builds — six products with full case studies.",
+    "AI platforms, a from-scratch LLM, gaming, trading systems, automation and client web builds — seven products with case studies.",
   path: "/projects",
 });
 
@@ -21,7 +21,7 @@ export default function ProjectsPage() {
           Featured <span className="text-gradient">work.</span>
         </h1>
         <p className="mt-5 max-w-xl text-muted-foreground">
-          Six products spanning AI news, a self-trained LLM, algorithmic trading, support
+          Seven products spanning AI news, a self-trained LLM, gaming, algorithmic trading, support
           platforms, automation and client sites. Open any project for the full case study.
         </p>
       </Reveal>

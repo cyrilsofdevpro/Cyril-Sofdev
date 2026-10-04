@@ -24,7 +24,7 @@ export function Hero() {
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.35 }}
             className="mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-brand-cyan before:h-px before:w-4 before:bg-brand-cyan"
           >
             AI Software Engineer · Nigeria
@@ -33,7 +33,7 @@ export function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            transition={{ duration: 0.4, delay: 0.05 }}
             className="font-display text-[clamp(2.6rem,6vw,4.6rem)] font-bold leading-[1.02] tracking-tight"
           >
             I build intelligent
@@ -45,7 +45,7 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground"
           >
             I&apos;m Cyril Sofdev. I design and ship AI-powered platforms, automation systems and trading
@@ -55,7 +55,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
             className="mt-5 font-mono text-base"
           >
             <TypingText words={roles} />
@@ -64,7 +64,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
             className="mt-9 flex flex-wrap gap-3.5"
           >
             <Button asChild>
@@ -85,12 +85,12 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
+            transition={{ duration: 0.4, delay: 0.25 }}
             className="mt-10 flex flex-wrap gap-8"
           >
             <div>
               <div className="font-display text-2xl font-bold">
-                <Counter value={6} suffix="+" />
+                <Counter value={7} suffix="+" />
               </div>
               <div className="font-mono text-[11px] text-muted-foreground">SHIPPED PRODUCTS</div>
             </div>
@@ -112,7 +112,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
         >
           <TerminalCard />
         </motion.div>

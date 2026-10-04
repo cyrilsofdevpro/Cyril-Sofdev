@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/projects/project-card";
@@ -39,13 +38,13 @@ export function ProjectGrid() {
         ))}
       </div>
 
-      <motion.div layout className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {visible.map((project) => (
-          <motion.div key={project.slug} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <div key={project.slug}>
             <ProjectCard project={project} />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

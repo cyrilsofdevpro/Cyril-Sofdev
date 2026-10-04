@@ -4,7 +4,7 @@ import { useRef, useMemo } from "react";
 import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
 
-function Particles({ count = 700 }: { count?: number }) {
+function Particles({ count = 260 }: { count?: number }) {
   const pointsRef = useRef<THREE.Points>(null);
   const mouse = useRef({ x: 0, y: 0 });
 
@@ -51,7 +51,7 @@ function Particles({ count = 700 }: { count?: number }) {
 export function ParticleField() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0 opacity-60">
-      <Canvas camera={{ position: [0, 0, 5], fov: 60 }} dpr={[1, 1.5]}>
+      <Canvas camera={{ position: [0, 0, 5], fov: 60 }} dpr={[1, 1.2]}>
         <ambientLight intensity={0.5} />
         <Particles />
       </Canvas>

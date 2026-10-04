@@ -9,6 +9,7 @@ export const projects: Project[] = [
     description:
       "An AI-powered news ecosystem combining trusted journalism, intelligent summarization and community engagement.",
     gradient: "from-blue-500 via-purple-500 to-cyan-400",
+    images: [{ src: "/images/projects/pulsewire.png", alt: "PulseWire news platform dashboard" }],
     techStack: ["Next.js", "Supabase", "Prisma", "Gemini API", "Tailwind CSS"],
     featured: true,
     githubUrl: "https://github.com/cyrilsofdevpro",
@@ -68,12 +69,15 @@ export const projects: Project[] = [
     description:
       "A custom large language model trained and served from scratch — no external AI API calls, fully self-owned inference.",
     gradient: "from-purple-500 via-blue-500 to-cyan-400",
+    images: [{ src: "/images/projects/sofai.png", alt: "SofAI AI Studio chat workspace" }],
     techStack: ["Python", "PyTorch", "Custom Transformer", "Tokenizer", "React", "Node.js"],
     featured: true,
     githubUrl: "https://github.com/cyrilsofdevpro",
     caseStudy: {
       overview:
         "SofAI is a transformer-based language model designed, trained and served entirely in-house — from tokenizer to inference server — with zero dependency on third-party AI APIs.",
+      aiAgent:
+        "SofAI includes an AI agent in its AI Studio workspace to help users plan and build AI systems, prepare training data, guide model training, and iterate on results. It brings practical model-building assistance into the same space as the self-hosted LLM rather than limiting the product to a chat interface.",
       problem:
         "Relying on third-party AI APIs means no control over model behavior, ongoing per-token cost, and sending data to infrastructure you don't own.",
       research:
@@ -111,6 +115,45 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "sof-stake",
+    name: "SofStake",
+    tagline: "Gaming, Rewards & Mining Hub",
+    category: "web",
+    description:
+      "A unified gaming experience bringing sports, casino favorites, crash games and a reward-driven mining hub together.",
+    gradient: "from-purple-500 via-blue-500 to-cyan-400",
+    images: [{ src: "/images/projects/sofstake.png", alt: "SofStake gaming and rewards platform" }],
+    techStack: ["Next.js", "React", "Tailwind CSS"],
+    featured: true,
+    caseStudy: {
+      overview:
+        "SofStake brings live sports, casino games, crash games and a reward-driven mining hub into one gaming experience, with account, wallet and activity information presented in a single interface.",
+      problem:
+        "Combining different kinds of games and rewards can make navigation and account activity feel fragmented. SofStake brings these experiences together around a clear home dashboard.",
+      architecture:
+        "The interface is organized around game discovery, live odds, account balance, tournaments and mining activity, giving players a consistent place to move between the platform's core areas.",
+      frontend:
+        "A responsive dashboard pairs clear navigation with focused panels for wallet activity, live odds, tournaments and rewards, keeping key status visible without crowding the game experience.",
+      challenges: [
+        {
+          title: "Making a broad platform easy to scan",
+          description:
+            "Sports, casino, crash games and mining each have different information needs. The dashboard separates those areas while keeping wallet and reward status easy to find.",
+        },
+      ],
+      lessonsLearned: [
+        "A consistent account and navigation model helps users move between very different product areas.",
+        "Financial and reward information should be clearly labeled and easy to verify.",
+      ],
+      futureImprovements: [
+        "Add clearer responsible-play controls and account activity summaries.",
+        "Improve accessibility and performance across lower-powered mobile devices.",
+      ],
+      results:
+        "A single interface for gaming, wallet visibility and reward features, designed to keep the experience cohesive across product areas.",
+    },
+  },
+  {
     slug: "sofai-fx-bot",
     name: "SofAI FX Bot",
     tagline: "AI Forex Trading Platform",
@@ -118,6 +161,10 @@ export const projects: Project[] = [
     description:
       "An AI-powered forex trading system covering market analysis, signal generation and automated execution.",
     gradient: "from-cyan-400 via-purple-500 to-blue-500",
+    images: [
+      { src: "/images/projects/sofai-fx-bot.jpg", alt: "SofAI FX Bot signals and analysis dashboard" },
+      { src: "/images/projects/fx-development-site.png", alt: "Algorithmic trading development website" },
+    ],
     techStack: ["Python", "MQL5", "MetaTrader 5", "Telegram API"],
     featured: true,
     githubUrl: "https://github.com/cyrilsofdevpro",
@@ -198,6 +245,7 @@ export const projects: Project[] = [
     description:
       "A showcase of restaurant, boutique, corporate and portfolio sites built for real clients.",
     gradient: "from-cyan-400 via-blue-500 to-purple-500",
+    images: [{ src: "/images/projects/worknext.jpg", alt: "WorkNext careers and job-support website" }],
     techStack: ["Next.js", "React", "Tailwind CSS"],
     featured: false,
     caseStudy: {

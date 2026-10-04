@@ -7,12 +7,14 @@ export interface Project {
   category: ProjectCategory;
   description: string;
   gradient: string;
+  images?: { src: string; alt: string }[];
   techStack: string[];
   featured: boolean;
   githubUrl?: string;
   liveUrl?: string;
   caseStudy: {
     overview: string;
+    aiAgent?: string;
     problem: string;
     research?: string;
     planning?: string;

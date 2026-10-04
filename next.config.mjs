@@ -8,6 +8,9 @@ const nextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
+  turbopack: {
+    root: process.cwd(),
+  },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },

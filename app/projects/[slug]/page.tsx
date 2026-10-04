@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Github, ExternalLink, CheckCircle2 } from "lucide-react";
 import { projects, getProjectBySlug } from "@/data/projects";
@@ -75,17 +76,24 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </div>
         </Reveal>
 
-        {/* Hero media placeholder — swap for real screenshots/gallery */}
-        <Reveal delay={0.1}>
-          <div
-            className={`relative mt-14 flex h-64 items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${project.gradient} sm:h-96`}
-          >
-            <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-25`} />
-            <span className="relative z-10 rounded-full border border-white/20 bg-black/30 px-4 py-2 font-mono text-xs backdrop-blur-sm">
-              Add project screenshots to /public and swap this placeholder
-            </span>
-          </div>
-        </Reveal>
+        {project.images?.length ? (
+          <Reveal delay={0.05}>
+            <div className={`mt-12 grid gap-4 ${project.images.length > 1 ? "md:grid-cols-2" : ""}`}>
+              {project.images.map((image, index) => (
+                <figure key={image.src} className="relative aspect-[16/9] overflow-hidden rounded-xl border border-border bg-surface">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes={project.images!.length > 1 ? "(max-width: 768px) 100vw, 50vw" : "100vw"}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    className="object-cover"
+                  />
+                </figure>
+              ))}
+            </div>
+          </Reveal>
+        ) : null}
 
         <div className="mt-16 max-w-4xl">
           <CaseStudySection title="Overview">{caseStudy.overview}</CaseStudySection>
@@ -99,6 +107,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </CaseStudySection>
           )}
           <CaseStudySection title="Architecture">{caseStudy.architecture}</CaseStudySection>
+          {caseStudy.aiAgent && (
+            <CaseStudySection title="AI Agent & Training Studio" accent="purple">
+              {caseStudy.aiAgent}
+            </CaseStudySection>
+          )}
           {caseStudy.databaseDesign && (
             <CaseStudySection title="Database Design" accent="purple">
               {caseStudy.databaseDesign}

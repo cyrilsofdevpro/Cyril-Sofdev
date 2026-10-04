@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/animations/reveal";
 import { getFeaturedProjects } from "@/data/projects";
@@ -29,11 +30,19 @@ export function FeaturedProjects() {
               href={`/projects/${project.slug}`}
               className="group block h-full overflow-hidden rounded-2xl border border-border bg-gradient-to-b from-white/[0.05] to-white/[0.015] backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-brand-purple/40"
             >
-              <div
-                className={`relative flex h-40 items-center justify-center overflow-hidden bg-gradient-to-br ${project.gradient} bg-opacity-10`}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-20`} />
-                <span className="relative z-10 rounded-full border border-white/20 bg-black/30 px-3 py-1.5 font-mono text-[11px] backdrop-blur-sm">
+              <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${project.gradient}`}>
+                {project.images?.[0] && (
+                  <Image
+                    src={project.images[0].src}
+                    alt={project.images[0].alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    loading="lazy"
+                    className="object-cover"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                <span className="absolute bottom-4 left-4 rounded-full border border-white/20 bg-black/45 px-3 py-1.5 font-mono text-[11px] text-white backdrop-blur-sm">
                   {project.tagline}
                 </span>
               </div>
