@@ -84,6 +84,9 @@ export function constructMetadata({
       "Sofdev Inc",
     ],
     authors: [{ name: "Cyril Sofdev" }],
+    verification: {
+      google: "bSn7eAZE6BqcUu4ffw3fc6EZYss9gks9GY27ebqXu0g",
+    },
     metadataBase: new URL(siteConfig.url),
     alternates: { canonical: fullUrl },
     openGraph: {
