@@ -9,7 +9,10 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setMounted(true), 0);
+    return () => window.clearTimeout(timeout);
+  }, []);
 
   if (!mounted) {
     return <div className="h-9 w-9 rounded-full glass" aria-hidden />;

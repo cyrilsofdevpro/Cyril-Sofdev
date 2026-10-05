@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { githubUsername } from "@/data/socials";
 
 // Cache GitHub responses for 1 hour at the edge/CDN layer to stay well
@@ -6,6 +6,46 @@ import { githubUsername } from "@/data/socials";
 export const revalidate = 3600;
 
 const GITHUB_API = "https://api.github.com";
+
+type GitHubProfile = {
+  login: string;
+  name: string | null;
+  avatar_url: string;
+  bio: string | null;
+  followers: number;
+  following: number;
+  public_repos: number;
+  html_url: string;
+};
+
+type GitHubRepo = {
+  fork: boolean;
+  name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+  language: string | null;
+  updated_at: string;
+};
+
+type GitHubGraphQLResponse = {
+  data?: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar?: {
+          totalContributions: number;
+          weeks: Array<{
+            contributionDays: Array<{
+              date: string;
+              contributionCount: number;
+            }>;
+          }>;
+        };
+      };
+    };
+  };
+};
 
 function authHeaders() {
   const headers: Record<string, string> = { Accept: "application/vnd.github+json" };
@@ -51,7 +91,7 @@ async function fetchContributions(username: string) {
   });
 
   if (!res.ok) return null;
-  const json = await res.json();
+  const json = (await res.json()) as GitHubGraphQLResponse;
   return json?.data?.user?.contributionsCollection?.contributionCalendar ?? null;
 }
 
@@ -77,26 +117,26 @@ export async function GET() {
       );
     }
 
-    const profile = await profileRes.json();
-    const repos = reposRes.ok ? await reposRes.json() : [];
+    const profile = (await profileRes.json()) as GitHubProfile;
+    const repos = reposRes.ok ? ((await reposRes.json()) as GitHubRepo[]) : [];
 
     const pinned = [...repos]
-      .filter((r: any) => !r.fork)
-      .sort((a: any, b: any) => b.stargazers_count - a.stargazers_count)
+      .filter((repo) => !repo.fork)
+      .sort((a, b) => b.stargazers_count - a.stargazers_count)
       .slice(0, 6)
-      .map((r: any) => ({
-        name: r.name,
-        description: r.description,
-        url: r.html_url,
-        stars: r.stargazers_count,
-        forks: r.forks_count,
-        language: r.language,
-        updatedAt: r.updated_at,
+      .map((repo) => ({
+        name: repo.name,
+        description: repo.description,
+        url: repo.html_url,
+        stars: repo.stargazers_count,
+        forks: repo.forks_count,
+        language: repo.language,
+        updatedAt: repo.updated_at,
       }));
 
     const languageCounts: Record<string, number> = {};
-    repos.forEach((r: any) => {
-      if (r.language) languageCounts[r.language] = (languageCounts[r.language] ?? 0) + 1;
+    repos.forEach((repo) => {
+      if (repo.language) languageCounts[repo.language] = (languageCounts[repo.language] ?? 0) + 1;
     });
 
     const contributions = await fetchContributions(username);
@@ -114,7 +154,7 @@ export async function GET() {
       },
       pinned,
       languages: languageCounts,
-      contributions, // null if no GITHUB_TOKEN is configured — handled in the UI
+      contributions,
     });
   } catch (err) {
     console.error("[github] Failed to fetch GitHub data", err);

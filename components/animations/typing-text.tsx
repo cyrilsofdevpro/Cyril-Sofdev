@@ -23,20 +23,31 @@ export function TypingText({
 
   useEffect(() => {
     const currentWord = words[wordIndex % words.length] ?? "";
-    let timeout: ReturnType<typeof setTimeout>;
 
     if (!deleting && text.length < currentWord.length) {
-      timeout = setTimeout(() => setText(currentWord.slice(0, text.length + 1)), typingSpeed);
-    } else if (!deleting && text.length === currentWord.length) {
-      timeout = setTimeout(() => setDeleting(true), pauseMs);
-    } else if (deleting && text.length > 0) {
-      timeout = setTimeout(() => setText(currentWord.slice(0, text.length - 1)), deletingSpeed);
-    } else if (deleting && text.length === 0) {
-      setDeleting(false);
-      setWordIndex((i) => (i + 1) % words.length);
+      const timeout = setTimeout(() => setText(currentWord.slice(0, text.length + 1)), typingSpeed);
+      return () => clearTimeout(timeout);
     }
 
-    return () => clearTimeout(timeout);
+    if (!deleting && text.length === currentWord.length) {
+      const timeout = setTimeout(() => setDeleting(true), pauseMs);
+      return () => clearTimeout(timeout);
+    }
+
+    if (deleting && text.length > 0) {
+      const timeout = setTimeout(() => setText(currentWord.slice(0, text.length - 1)), deletingSpeed);
+      return () => clearTimeout(timeout);
+    }
+
+    if (deleting && text.length === 0) {
+      const timeout = setTimeout(() => {
+        setDeleting(false);
+        setWordIndex((i) => (i + 1) % words.length);
+      }, 0);
+      return () => clearTimeout(timeout);
+    }
+
+    return undefined;
   }, [text, deleting, wordIndex, words, typingSpeed, deletingSpeed, pauseMs]);
 
   return (

@@ -9,18 +9,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/experience",
     "/projects",
     "/services",
-    "/blog",
     "/github",
     "/contact",
   ].map((route) => ({
-    url: `${siteConfig.url}${route}`,
+    url: new URL(route, siteConfig.url).toString(),
     lastModified: new Date(),
-    changeFrequency: "weekly" as const,
+    changeFrequency: route === "" ? ("weekly" as const) : ("monthly" as const),
     priority: route === "" ? 1 : 0.7,
   }));
 
   const projectRoutes = projects.map((p) => ({
-    url: `${siteConfig.url}/projects/${p.slug}`,
+    url: new URL(`/projects/${p.slug}`, siteConfig.url).toString(),
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,

@@ -10,7 +10,7 @@ export function Header({ onOpenCommandPalette }: { onOpenCommandPalette: () => v
   return (
     <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between px-5 py-5 md:px-8">
       <Link href="/" className="flex items-center gap-2.5 font-display font-semibold tracking-tight">
-        <Image src={logo} alt="logo" width={28} height={28} className="rounded-md" />
+        <Image src={logo} alt="Cyril Sofdev logo" width={28} height={28} className="rounded-md" />
         <span className="h-2 w-2 rounded-full bg-brand-cyan shadow-[0_0_12px_theme(colors.brand.cyan)]" />
         Cyril Sofdev
       </Link>

@@ -4,6 +4,9 @@
 
 @layer base {
   :root {
+    --font-space-grotesk: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-inter: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-jetbrains-mono: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
     --background: 220 24% 4%;
     --foreground: 220 20% 92%;
     --muted: 220 14% 12%;

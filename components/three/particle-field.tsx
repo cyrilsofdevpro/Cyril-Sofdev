@@ -1,8 +1,13 @@
 "use client";
 
 import { useRef, useMemo } from "react";
-import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+
+function seededNoise(seed: number) {
+  const x = Math.sin(seed * 12.9898) * 43758.5453123;
+  return x - Math.floor(x);
+}
 
 function Particles({ count = 260 }: { count?: number }) {
   const pointsRef = useRef<THREE.Points>(null);
@@ -11,9 +16,9 @@ function Particles({ count = 260 }: { count?: number }) {
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      arr[i * 3] = (Math.random() - 0.5) * 16;
-      arr[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      arr[i * 3 + 2] = (Math.random() - 0.5) * 8;
+      arr[i * 3] = (seededNoise(i + 1) - 0.5) * 16;
+      arr[i * 3 + 1] = (seededNoise(i + 2) - 0.5) * 10;
+      arr[i * 3 + 2] = (seededNoise(i + 3) - 0.5) * 8;
     }
     return arr;
   }, [count]);

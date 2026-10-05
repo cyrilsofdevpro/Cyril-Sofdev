@@ -5,14 +5,14 @@ import { useEffect, useRef, useState } from "react";
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
+  const [enabled] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(pointer: fine)").matches;
+  });
   const [growing, setGrowing] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
-    setEnabled(isFinePointer);
-    if (!isFinePointer) return;
+    if (typeof window === "undefined" || !enabled) return;
 
     let mx = 0,
       my = 0,
@@ -64,7 +64,7 @@ export function CustomCursor() {
         el.removeEventListener("mouseleave", shrink);
       });
     };
-  }, []);
+  }, [enabled]);
 
   if (!enabled) return null;
 

@@ -36,10 +36,10 @@ export function Hero() {
             transition={{ duration: 0.4, delay: 0.05 }}
             className="font-display text-[clamp(2.6rem,6vw,4.6rem)] font-bold leading-[1.02] tracking-tight"
           >
-            I build intelligent
+            AI Engineer &amp; Software
             <br />
-            software that{" "}
-            <span className="text-gradient">thinks &amp; ships.</span>
+            Developer building{" "}
+            <span className="text-gradient">intelligent systems.</span>
           </motion.h1>
 
           <motion.p
